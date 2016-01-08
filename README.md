@@ -17,3 +17,4 @@ Much of this may not be necessary, as the files will be configured properly in t
 * Install laravel with `composer global require "laravel/installer"`
 * Add `~/.composer/vendor/bin` to `PATH`
 	* This may be done by adding (or updating) `~/.profile` and then sourcing it `. ~/.profile` (see sample `.profile` in `misc` folder)
+* Create your project with `laravel new laravel-project` (note that this becomes the `laravel-project` that is shared with the VM--if you had already created this empty folder, just delete it and run this command to create it with the new project inside)

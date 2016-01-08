@@ -30,3 +30,4 @@ Much of this may not be necessary, as the files will be configured properly in t
 * Add php installation to setup script with `sudo apt-get install -y php5 php-pear`
 * Update `resources/assets/sass/app.scss` to `@import "foundation.scss";` and `@include foundation-everything` in order to use all of Foundation
 * Update `gulpfile.js` to `mix.sass('app.scss', null, {includePaths: ["vendor/zurb/foundation/scss"]});`
+* Update `gulpfile.js` to include a versioning function and add comment regarding minification (`gulp --production`)

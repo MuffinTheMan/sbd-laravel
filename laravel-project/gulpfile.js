@@ -11,6 +11,13 @@ var elixir = require('laravel-elixir');
  |
  */
 
+// For minification, run gulp --production (or individually as seen below)
+// gulp sass --production
 elixir(function(mix) {
     mix.sass('app.scss', null, {includePaths: ["vendor/zurb/foundation/scss"]});
+});
+
+// gulp version --production
+elixir(function(mix) {
+    mix.version('css/app.css');
 });

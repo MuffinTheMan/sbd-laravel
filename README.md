@@ -12,9 +12,11 @@ Much of this may not be necessary, as the files will be configured properly in t
 	* Uncomment `# config.vm.network "private_network", ip: "192.168.33.10"`--this is needed for `"nfs"` to work above
 * Run `vagrant up`
 	* If you run into issues such as `mount.nfs: access denied by server while mounting 192.168.33.1:/path/to/setup-dump/setup`, try running the following (on the host machine): `sudo nfsd checkexports` If there are errors, try editing `/etc/exports` and deleting everything within, then `vagrant destroy -f; vagrant up` should do the trick!
-* Create `setup/setup.sh` and `chmod a+x` it--this script will be run on the VM
+* Create `setup/setup.sh` and `chmod a+x` it--this script will be run on the VM and begin with `sudo apt-get update`
 * Install Composer globally `curl -sS https://getcomposer.org/installer | php; mv composer.phar /usr/local/bin/composer`
 * Install laravel with `composer global require "laravel/installer"`
 * Add `~/.composer/vendor/bin` to `PATH`
 	* This may be done by adding (or updating) `~/.profile` and then sourcing it `. ~/.profile` (see sample `.profile` in `misc` folder)
 * Create your project with `laravel new laravel-project` (note that this becomes the `laravel-project` that is shared with the VM--if you had already created this empty folder, just delete it and run this command to create it with the new project inside)
+*  Within `larvel-project`, install Zurb Foundation with `composer require zurb/foundation`
+* Update `setup.sh` to install apache with `sudo apt-get install -y apache2`

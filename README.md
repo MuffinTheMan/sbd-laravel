@@ -28,3 +28,5 @@ Much of this may not be necessary, as the files will be configured properly in t
 * Add MySQL installation to `setup.sh` with  `DEBIAN_FRONTEND=noninteractive sudo -E apt-get -q -y install mysql-server` (This will leave root with no password!)
 * Add some "secure" stuff for MySQL into `setup.sh` (check on necessity?)
 * Add php installation to setup script with `sudo apt-get install -y php5 php-pear`
+* Update `resources/assets/sass/app.scss` to `@import "foundation.scss";` and `@include foundation-everything` in order to use all of Foundation
+* Update `gulpfile.js` to `mix.sass('app.scss', null, {includePaths: ["vendor/zurb/foundation/scss"]});`

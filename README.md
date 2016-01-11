@@ -1,8 +1,21 @@
-# setup-dump
+# Setup Brain-Dump - Laravel
 A place for me to brain-dump my process for creating a LAMP stack for Laravel with Foundation (sass) on a Vagrant machine. All steps (excepting those run in the VM) are run on my Mid 2009 Macbook Pro running (10.11.2).
 
+## How to Use
+So, you want to utilize this repo to help you get started even quicker with Laravel and Foundation? Great--follow the below steps to get started!
+
+1. Clone the repository `git clone https://github.com/MuffinTheMan/sbd-laravel.git`
+	* If you are planning on working on this project (i.e. not using this to build a new site), discontinue this "How to Use" guide; otherwise, continue
+2. Rename the repository to something that makes sense for your site `mv sbd-laravel my-site`
+3. Stop tracking the `sbd-laravel` repo with `cd sbd-laravel && rm -rf .git`
+4. If you want to use git, run `git init` (or `git-flow init` if you're a git-flow person)
+5. In the `laravel-project` directory run `composer install` (or `php composer.phar install`) and `npm install`
+	* Note: you could rename the `laravel-project` directory as well, just be aware that you would also have to update `setup.sh` and `laravel-project.conf` to make sure everything matches
+5. Back in the main directory, you're now ready to use this project to setup your environment, run `vagrant up` to get the VM going
+6. Once complete, `vagrant ssh`, then `cd /setup && ./setup.sh`. This will take a little while, but once it's done, you'll have a LAMP stack and a working Laravel site that can be viewed at `localhost:8080`
+
 ## The Process
-Much of this may not be necessary, as the files will be configured properly in this repo; however, all steps will be documented for repeatability and troubleshooting.
+Here is the process--brain-dumped. This is for troubleshooting, etc. Follow the "How to Use" guide for, well, how to use it :)
 
 * Initialize the Vagrant box with `vagrant init debian/jessie64`
 * Edit Vagrantfile

@@ -10,9 +10,10 @@ So, you want to utilize this repo to help you get started even quicker with Lara
 3. Stop tracking the `sbd-laravel` repo with `cd sbd-laravel && rm -rf .git`
 4. If you want to use git, run `git init` (or `git-flow init` if you're a git-flow person)
 5. In the `laravel-project` directory run `composer install` (or `php composer.phar install`) and `npm install`
-	* Note: you could rename the `laravel-project` directory as well, just be aware that you would also have to update `setup.sh` and `laravel-project.conf` to make sure everything matches
+	* Note: you could rename the `laravel-project` directory as well, just be aware that you would also have to update `setup.sh`, `laravel-project.conf` and `Vagrantfile` to make sure everything matches
 5. Back in the main directory, you're now ready to use this project to setup your environment, run `vagrant up` to get the VM going
 6. Once complete, `vagrant ssh`, then `cd /setup && ./setup.sh`. This will take a little while, but once it's done, you'll have a LAMP stack and a working Laravel site that can be viewed at `localhost:8080`
+7. 
 
 ## The Process
 Here is the process--brain-dumped. This is for troubleshooting, etc. Follow the "How to Use" guide for, well, how to use it :)
@@ -44,3 +45,42 @@ Here is the process--brain-dumped. This is for troubleshooting, etc. Follow the 
 * Update `resources/assets/sass/app.scss` to `@import "foundation.scss";` and `@include foundation-everything` in order to use all of Foundation
 * Update `gulpfile.js` to `mix.sass('app.scss', null, {includePaths: ["vendor/zurb/foundation/scss"]});`
 * Update `gulpfile.js` to include a versioning function and add comment regarding minification (`gulp --production`)
+* Install autoprefixer `npm install --save-dev gulp-autoprefixer`
+
+# With Homestead Instead
+
+So, pretty much ignore everything above and do the following to use Homestead:
+
+1. Clone this repository `git clone https://github.com/MuffinTheMan/sbd-laravel.git`
+2. `mv sbd-laravel/laravel-project name-of-your-project`
+3. `rm -rf sbd-laravel`
+4. `cd name-of-your-project`
+5. `git init` or `git flow init` (if you use git or git-flow)
+6. `git add *` (I also add `.gitignore` and `.env.example` just cuz)
+7. `composer install && npm install && npm install jquery --save`
+8. In your home directory (i.e. `~/`) install Homestead
+	1. `vagrant box add laravel/homestead`
+	2. `git clone https://github.com/laravel/homestead.git Homestead`
+	3. `cd Homestead/ && bash init.sh`
+	4. Modify `folders:` and `sites:` in `~/.homestead/Homestead.yaml` to share the folder `name-of-your-project` from above (and map it to whatever name you want--as an example `sites:` will map `to: /home/vagrant/name-of-your-site/public`
+	5. Update your `/etc/hosts` file to map `192.168.10.10  name-of-your-site.app` (I like using `name.dev`) and flush your cache (on a Mac `dscacheutil -flushcache`) 
+	6. Run `vagrant up` in `~/Homestead`
+	7. View your site at `name-of-your-site.app` (or whatever you chose)
+
+# To Incorporate into Above
+
+* install jquery `npm install jquery --save` and mix it with `foundation/dist/foundation.js`
+* **NOT DOING** install modernizr `npm install modernizr --save` and include it in `head`
+* Include javascript at END of <body> and initialize with `$(document).foundation();` like:
+
+        <body> 
+            <!--Place body stuff here-->
+            <script src="js/all.js"></script> 
+            <script> $(document).foundation(); </script>
+        </body>
+ 
+* `npm install motion-ui --save-dev`
+* Add to `includePaths` `'node_modules/motion-ui/src'`
+
+        @import 'motion-ui';
+        @include motion-ui-transitions;
